@@ -12,10 +12,10 @@ public class Main {
         int cont = 0;
         Double somatorio1 = Double.valueOf(0);
         Double somatorio2 = Double.valueOf(0);
+        Double resultado1;
         List<Double> coluna4 = new ArrayList<>();
-        List<Double> coluna5 = new ArrayList<>();
 
-        Scanner scannerNew = new Scanner(new FileReader("arquivo_yosef.txt"));
+        Scanner scannerNew = new Scanner(new FileReader("arquivo_yosef2.txt"));
         while (scannerNew.hasNextLine()) {
             String line = scannerNew.nextLine();
             line = line.trim().replaceAll("\\s+", "¥");
@@ -28,20 +28,16 @@ public class Main {
 
                 if (cont == linhas) {
                     cont = 0;
-                    coluna4.add(somatorio1);
-                    coluna5.add(somatorio2);
-
+                    resultado1 = (Math.pow((somatorio1 - somatorio2), 2) / ((Math.pow(somatorio1, 2) + Math.pow(somatorio2,2))));
+                    coluna4.add(resultado1);
                     somatorio1 = Double.valueOf(0);
-                    somatorio2 = Double.valueOf(0);
                 }
             }
             cont++;
         }
         for(int i = 0; i < coluna4.size(); i++) {
             System.out.println("BLOCO " + (i+1) );
-            System.out.println("Somatorio 4 : " + coluna4.get(i));
-            System.out.println("Somatorio 5 : " + coluna5.get(i) + "\n");
-
+            System.out.println("Somatorio : " + coluna4.get(i));
         }
     }
 }
