@@ -7,21 +7,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        Scanner scanner = new Scanner(System.in);
-        String nomeArquivo;
-        System.out.println("Digite o nome do arquivo: ");
-        nomeArquivo = scanner.nextLine();
-        System.out.println("Digite a quantidade de linhas de cada bloco: ");
-        int tamanhoBloco = scanner.nextInt();
+        String nomeArquivo = args[0];
+        int tamanhoBloco = Integer.parseInt(args[1]);
         int contador = 0;
-
         double iExperimental1 = 0;
         double iExperimental2 = 0;
         double resultadoFinal;
 
         List<Double> resultados = new ArrayList<>();
 
-        Scanner scannerNew = new Scanner(new FileReader(nomeArquivo + ".txt"));
+        Scanner scannerNew = new Scanner(new FileReader(nomeArquivo));
         while (scannerNew.hasNextLine()) {
             String linhaAtual = scannerNew.nextLine();
             linhaAtual = linhaAtual.trim().replaceAll("\\s+", "¥");
