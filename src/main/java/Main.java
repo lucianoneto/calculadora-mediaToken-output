@@ -6,9 +6,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Digite a quantidade de linhas de cada bloco: \n");
 
+        Scanner scanner = new Scanner(System.in);
+        String nomeArquivo;
+        System.out.println("Digite o nome do arquivo: ");
+        nomeArquivo = scanner.nextLine();
+        System.out.println("Digite a quantidade de linhas de cada bloco: ");
         int tamanhoBloco = scanner.nextInt();
         int contador = 0;
 
@@ -18,7 +21,7 @@ public class Main {
 
         List<Double> resultados = new ArrayList<>();
 
-        Scanner scannerNew = new Scanner(new FileReader("arquivo_yosef2.txt"));
+        Scanner scannerNew = new Scanner(new FileReader(nomeArquivo + ".txt"));
         while (scannerNew.hasNextLine()) {
             String linhaAtual = scannerNew.nextLine();
             linhaAtual = linhaAtual.trim().replaceAll("\\s+", "¥");
@@ -31,7 +34,7 @@ public class Main {
 
                 if (contador == tamanhoBloco) {
                     contador = 0;
-                    resultadoFinal = (Math.pow((iExperimental1 - iExperimental2), 2) / ((Math.pow(iExperimental1, 2) + Math.pow(iExperimental2, 2))));
+                    resultadoFinal = (Math.pow((iExperimental1 - iExperimental2), 2) / (Math.pow(iExperimental1, 2) + Math.pow(iExperimental2, 2)));
                     resultados.add(resultadoFinal);
                     iExperimental1 = 0;
                 }
