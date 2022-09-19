@@ -26,12 +26,12 @@ public class Main {
 
                 iExperimental1 += Double.parseDouble(linha[3]);
                 iExperimental2 += Double.parseDouble(linha[4]);
-
                 if (contador == tamanhoBloco) {
-                    contador = 0;
-                    resultadoFinal = (Math.pow((iExperimental1 - iExperimental2), 2) / (Math.pow(iExperimental1, 2) + Math.pow(iExperimental2, 2)));
+                    contador = -1;
+                    resultadoFinal = (Math.pow((iExperimental1 - iExperimental2), 2)) / ((Math.pow(iExperimental1, 2)) + (Math.pow(iExperimental2, 2)));
                     resultados.add(resultadoFinal);
                     iExperimental1 = 0;
+                    iExperimental2 = 0;
                 }
             }
             contador++;
