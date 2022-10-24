@@ -10,12 +10,14 @@ public class Main {
 
         String nomeArquivo = args[0];
         int contador = -26;
-        double iExperimental1 = 0;
-        double iExperimental2 = 0;
-        double resultadoFinal;
+        double resultadoFinal = 0d;
 
         List<Double> resultados = new ArrayList<>();
         List<Double> angulos = new ArrayList<>();
+        List<Double> coluna4 = new ArrayList<>();
+        List<Double> coluna5 = new ArrayList<>();
+        List<Double> novaColuna4 = new ArrayList<>();
+        List<Double> novaColuna5 = new ArrayList<>();
 
         Scanner scannerNew = new Scanner(new FileReader(nomeArquivo));
         while (scannerNew.hasNextLine()) {
@@ -29,20 +31,41 @@ public class Main {
 
             if (contador > 0) {
                 if (linha.length == 5) {
-                    iExperimental1 += Double.parseDouble(linha[3]);
-                    iExperimental2 += Double.parseDouble(linha[4]);
+                    //verificar maior valor
+                    coluna4.add(Double.parseDouble(linha[3]));
+                    coluna5.add(Double.parseDouble(linha[4]));
+
                 }
                 if (linha.length == 7) {
-                    contador = 0;
-                    resultadoFinal = (Math.pow((iExperimental1 - iExperimental2), 2)) / ((Math.pow(iExperimental1, 2)) + (Math.pow(iExperimental2, 2)));
+                    Double maxValueColuna4 = 0d;
+                    Double maxValueColuna5 = 0d;
+
+                    for (Double double1 : coluna4) {
+                        if (double1 > maxValueColuna4)
+                            maxValueColuna4 = double1;
+                    }
+                    for (Double double1 : coluna5) {
+                        if (double1 > maxValueColuna5)
+                            maxValueColuna5 = double1;
+                    }
+                    for (Double value : coluna4) {
+                        Double auxiliar = value/maxValueColuna4;
+                        novaColuna4.add(auxiliar);
+                    }
+                    for (Double aDouble : coluna5) {
+                        Double auxiliar = aDouble/maxValueColuna5;
+                        novaColuna5.add(auxiliar);
+                    }
+
+                    for(int i = 0; i<novaColuna4.size(); i++) {
+                        resultadoFinal += (Math.pow((novaColuna4.get(i)- novaColuna5.get(i)), 2)) / ((Math.pow(novaColuna4.get(i), 2)) + (Math.pow(novaColuna5.get(i), 2)));
+                    }
                     resultados.add(resultadoFinal);
-                    iExperimental1 = 0;
-                    iExperimental2 = 0;
+                    contador = 0;
+
                     angulos.add(Double.parseDouble(linha[3]));
                 }
                 if (Objects.equals(linha[0], "fitted")) {
-                    resultadoFinal = (Math.pow((iExperimental1 - iExperimental2), 2)) / ((Math.pow(iExperimental1, 2)) + (Math.pow(iExperimental2, 2)));
-                    resultados.add(resultadoFinal);
                     break;
                 }
             }
