@@ -36,7 +36,6 @@ public class Main {
                     //verificar maior valor
                     coluna4.add(Double.parseDouble(linha[3]));
                     coluna5.add(Double.parseDouble(linha[4]));
-
                 }
 
                 if (linha.length == 7 || (Objects.equals(linha[0], "fitted"))) {
@@ -68,11 +67,18 @@ public class Main {
                     resultadoFinal3= resultadoFinal1/resultadoFinal2;
 
                     resultados.add(resultadoFinal3);
+
+                    coluna4.clear();
+                    coluna5.clear();
+                    novaColuna4.clear();
+                    novaColuna5.clear();
                     contador = 0;
 
                     if (Objects.equals(linha[0], "fitted"))
                         break;
 
+                    resultadoFinal1 = 0;
+                    resultadoFinal2 = 0;
                     angulos.add(Double.parseDouble(linha[3]));
                 }
             }
