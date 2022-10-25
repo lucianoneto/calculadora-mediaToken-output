@@ -43,10 +43,16 @@ public class Main {
                     Double maxValueColuna5 = 0d;
 
                     for (Double double1 : coluna4) {
+                        if(double1 < 0){
+                            double1 = double1 * -1;
+                        }
                         if (double1 > maxValueColuna4)
                             maxValueColuna4 = double1;
                     }
                     for (Double double1 : coluna5) {
+                        if(double1 < 0){
+                            double1 = double1 * -1;
+                        }
                         if (double1 > maxValueColuna5)
                             maxValueColuna5 = double1;
                     }
