@@ -10,7 +10,9 @@ public class Main {
 
         String nomeArquivo = args[0];
         int contador = -26;
-        double resultadoFinal = 0d;
+        double resultadoFinal1 = 0d;
+        double resultadoFinal2 = 0d;
+        double resultadoFinal3 = 0d;
 
         List<Double> resultados = new ArrayList<>();
         List<Double> angulos = new ArrayList<>();
@@ -36,7 +38,8 @@ public class Main {
                     coluna5.add(Double.parseDouble(linha[4]));
 
                 }
-                if (linha.length == 7) {
+
+                if (linha.length == 7 || (Objects.equals(linha[0], "fitted"))) {
                     Double maxValueColuna4 = 0d;
                     Double maxValueColuna5 = 0d;
 
@@ -58,15 +61,19 @@ public class Main {
                     }
 
                     for(int i = 0; i<novaColuna4.size(); i++) {
-                        resultadoFinal += (Math.pow((novaColuna4.get(i)- novaColuna5.get(i)), 2)) / ((Math.pow(novaColuna4.get(i), 2)) + (Math.pow(novaColuna5.get(i), 2)));
+                        resultadoFinal1 += (novaColuna4.get(i)-novaColuna5.get(i))*(novaColuna4.get(i)-novaColuna5.get(i));
+                        resultadoFinal2 += ((novaColuna4.get(i)*novaColuna4.get(i))+(novaColuna5.get(i)*novaColuna5.get(i)));
                     }
-                    resultados.add(resultadoFinal);
+
+                    resultadoFinal3= resultadoFinal1/resultadoFinal2;
+
+                    resultados.add(resultadoFinal3);
                     contador = 0;
 
+                    if (Objects.equals(linha[0], "fitted"))
+                        break;
+
                     angulos.add(Double.parseDouble(linha[3]));
-                }
-                if (Objects.equals(linha[0], "fitted")) {
-                    break;
                 }
             }
             contador++;
