@@ -12,10 +12,11 @@ public class Main {
         int contador = -26;
         double resultadoFinal1 = 0d;
         double resultadoFinal2 = 0d;
-        double resultadoFinal3 = 0d;
+        double resultadoFinal3;
 
         List<Double> resultados = new ArrayList<>();
         List<Double> angulos = new ArrayList<>();
+
         List<Double> coluna4 = new ArrayList<>();
         List<Double> coluna5 = new ArrayList<>();
         List<Double> novaColuna4 = new ArrayList<>();
@@ -79,12 +80,13 @@ public class Main {
                     novaColuna4.clear();
                     novaColuna5.clear();
                     contador = 0;
-
-                    if (Objects.equals(linha[0], "fitted"))
-                        break;
-
                     resultadoFinal1 = 0;
                     resultadoFinal2 = 0;
+
+                    if (Objects.equals(linha[0], "fitted")) {
+                        break;
+                    }
+
                     angulos.add(Double.parseDouble(linha[3]));
                 }
             }
